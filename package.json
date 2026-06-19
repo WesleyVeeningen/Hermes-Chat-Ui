@@ -43,6 +43,5 @@
   "license": "ISC",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.1"
-  },
-  "type": "commonjs"
+  }
 }

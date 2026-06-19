@@ -7,19 +7,20 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const body = await req.text();
-  const baseUrl = process.env.HERMES_PROXY_URL || 'http://127.0.0.1:32776/api/v1/chat';
+  const baseUrl = 'http://127.0.0.1:32776/api/auth/ws';
+
+  const text = await req.text();
 
   const res = await fetch(baseUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body,
+    body: text,
   });
 
-  const text = await res.text();
-  return new NextResponse(text, {
+  const data = await res.text();
+  return new NextResponse(data, {
     status: res.status,
     headers: {
       'Content-Type': res.headers.get('content-type') || 'application/json',
